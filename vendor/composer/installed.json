@@ -1031,5 +1031,105 @@
             "imagine",
             "yii2"
         ]
+    },
+    {
+        "name": "2amigos/yii2-qrcode-helper",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/2amigos/yii2-qrcode-helper.git",
+            "reference": "827a79d0e498026119c8cdcf724d81be2e0daa5f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/2amigos/yii2-qrcode-helper/zipball/827a79d0e498026119c8cdcf724d81be2e0daa5f",
+            "reference": "827a79d0e498026119c8cdcf724d81be2e0daa5f",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.*",
+            "scrutinizer/ocular": "~1.1"
+        },
+        "time": "2015-03-16 21:26:14",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "dosamigos\\qrcode\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "2amigOS! Consulting Group",
+                "email": "hola@2amigos.us",
+                "homepage": "http://2amigos.us",
+                "role": "Developer"
+            }
+        ],
+        "description": "Create QrCodes based on libqrencode C library.",
+        "keywords": [
+            "2amigos",
+            "extension",
+            "helper",
+            "qrcode",
+            "yii",
+            "yii 2",
+            "yii2"
+        ]
+    },
+    {
+        "name": "hyii2/yii2-avatar",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/org-yii-china/yii2-avatar.git",
+            "reference": "8307edcbb13217f2848549724cc052e6e28ba23e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/org-yii-china/yii2-avatar/zipball/8307edcbb13217f2848549724cc052e6e28ba23e",
+            "reference": "8307edcbb13217f2848549724cc052e6e28ba23e",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2016-07-29 02:01:19",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "hyii2\\avatar\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-4-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Xianan Huang",
+                "email": "xianan_huang@163.com"
+            }
+        ],
+        "description": "基于cropper的一款头像上传yii2组件",
+        "keywords": [
+            "extension",
+            "yii2"
+        ]
     }
 ]

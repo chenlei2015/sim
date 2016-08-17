@@ -24,6 +24,14 @@ class ComposerStaticInitee0f83807f60bcd93cc7570bb75f0f10
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'h' => 
+        array (
+            'hyii2\\avatar\\' => 13,
+        ),
+        'd' => 
+        array (
+            'dosamigos\\qrcode\\' => 17,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -70,6 +78,14 @@ class ComposerStaticInitee0f83807f60bcd93cc7570bb75f0f10
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'hyii2\\avatar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hyii2/yii2-avatar',
+        ),
+        'dosamigos\\qrcode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-qrcode-helper/src',
         ),
         'cebe\\markdown\\' => 
         array (

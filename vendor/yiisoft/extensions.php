@@ -66,4 +66,22 @@ return array (
       '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
     ),
   ),
+  '2amigos/yii2-qrcode-helper' => 
+  array (
+    'name' => '2amigos/yii2-qrcode-helper',
+    'version' => '1.0.2.0',
+    'alias' => 
+    array (
+      '@dosamigos/qrcode' => $vendorDir . '/2amigos/yii2-qrcode-helper/src',
+    ),
+  ),
+  'hyii2/yii2-avatar' => 
+  array (
+    'name' => 'hyii2/yii2-avatar',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@hyii2/avatar' => $vendorDir . '/hyii2/yii2-avatar',
+    ),
+  ),
 );

@@ -10,7 +10,9 @@ use yii\helpers\Url;
     </form>
 </div>
 <div>
+    <?php if(isset($name) && !empty($name)){?>
     <img src="/uploads/<?=$name?>" alt="">
+    <?php }?>
 </div>
 
 
