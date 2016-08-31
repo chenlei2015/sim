@@ -10,13 +10,13 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\imagine\Image;//图片压缩 剪切 水印 文字水印
-use yii\web\UploadedFile;// 文件上传类
-use dosamigos\qrcode\QrCode;//引入生成二维码的类
+use yii\web\UploadedFile;// 文件上传�?
+use dosamigos\qrcode\QrCode;//引入生成二维码的�?
 
 class IndexController extends Controller
 {
     /**
-     * 上传图片并压缩
+     * 上传图片并压�?
      * @return string
      */
 
@@ -40,18 +40,23 @@ class IndexController extends Controller
      }
 
     /**
-     *生成二维码
+     *生成二维�?
      * @return string
      */
 
     public function actionQrcode(){
-        return QrCode::png('http://www.yii-china.com');//调用二维码生成方法
+        return QrCode::png('http://www.yii-china.com');//调用二维码生成方�?
     }
 
     /**
-     * 显示二维码页面
+     * 显示二维码页�?
      */
     public function actionCode(){
         return $this->render("code");
+    }
+
+    public function actionData(){
+        $data=[1,2,3,4,5,6,7,8,9];
+        print_r($data);
     }
 }
