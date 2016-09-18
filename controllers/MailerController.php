@@ -24,7 +24,7 @@ class MailerController extends Controller{
        }
 
        public function actionSendAll(){
-                echo "群发";
+                echo "群发8888";
        }
 
 }
