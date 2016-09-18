@@ -54,4 +54,24 @@ class IndexController extends Controller
     public function actionCode(){
         return $this->render("code");
     }
+
+    /**
+     * 文件上传
+     */
+    public function actionFile(){
+        if(Yii::$app->request->isPost){
+            //获取上传图片对象
+            $file=UploadedFile::getInstanceByName('pictrue');
+            if($file){
+                //上传图片名称
+                $name=time().mt_rand(1000,9999) .'.'.$file->extension;
+                //保存上传图片
+                $result=$file->saveAs('E:/software/xampp/htdocs/sim/web/uploads/'.$name);
+                if($result){
+                    return \yii\helpers\Json::encode([]);
+                }
+            }
+        }
+        return $this->render('index');
+    }
 }

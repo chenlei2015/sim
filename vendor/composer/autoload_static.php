@@ -24,6 +24,10 @@ class ComposerStaticInitee0f83807f60bcd93cc7570bb75f0f10
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'm' => 
+        array (
+            'mdm\\admin\\' => 10,
+        ),
         'h' => 
         array (
             'hyii2\\avatar\\' => 13,
@@ -78,6 +82,10 @@ class ComposerStaticInitee0f83807f60bcd93cc7570bb75f0f10
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'mdm\\admin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mdmsoft/yii2-admin',
         ),
         'hyii2\\avatar\\' => 
         array (
