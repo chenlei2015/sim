@@ -6,4 +6,7 @@ return [
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',
+    'tablePrefix'=>'shopnc_',
+    'enableSchemaCache'=>true,
+    'emulatePrepare'=>true,
 ];

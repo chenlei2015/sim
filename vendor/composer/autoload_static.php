@@ -28,6 +28,13 @@ class ComposerStaticInitee0f83807f60bcd93cc7570bb75f0f10
         array (
             'mdm\\admin\\' => 10,
         ),
+        'k' => 
+        array (
+            'kartik\\grid\\' => 12,
+            'kartik\\export\\' => 14,
+            'kartik\\dialog\\' => 14,
+            'kartik\\base\\' => 12,
+        ),
         'h' => 
         array (
             'hyii2\\avatar\\' => 13,
@@ -87,6 +94,22 @@ class ComposerStaticInitee0f83807f60bcd93cc7570bb75f0f10
         array (
             0 => __DIR__ . '/..' . '/mdmsoft/yii2-admin',
         ),
+        'kartik\\grid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-grid',
+        ),
+        'kartik\\export\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-export',
+        ),
+        'kartik\\dialog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-dialog',
+        ),
+        'kartik\\base\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
+        ),
         'hyii2\\avatar\\' => 
         array (
             0 => __DIR__ . '/..' . '/hyii2/yii2-avatar',
@@ -106,6 +129,13 @@ class ComposerStaticInitee0f83807f60bcd93cc7570bb75f0f10
     );
 
     public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'PHPExcel' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
+            ),
+        ),
         'I' => 
         array (
             'Imagine' => 

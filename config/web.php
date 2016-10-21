@@ -7,19 +7,19 @@ $config = [
     'basePath' => dirname(__DIR__),
     'defaultRoute'=>'index/index',
     'bootstrap' => ['log'],
-    'modules' => [
-        'admin' => [
-            'class' => 'mdm\admin\Module',
-        ],
-    ],
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            'site/*',
-            'avatar/index',
-            'rbac/*',
-        ]
-    ],
+//    'modules' => [
+//        'admin' => [
+//            'class' => 'mdm\admin\Module',
+//        ],
+//    ],
+//    'as access' => [
+//        'class' => 'mdm\admin\components\AccessControl',
+//        'allowActions' => [
+//            'site/*',
+//            'avatar/index',
+//            'rbac/*',
+//        ]
+//    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -60,11 +60,29 @@ $config = [
             ],
         ],
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'traceLevel' => YII_DEBUG ? 2 : 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'levels' => ['error', 'warning','info','profile'],
+                    //全局变量只在debug模式下进行记录，正式环境不进行记录
+                    'logVars'=> YII_DEBUG ? ['_SESSION','_COOKIE','_SERVER','_FILES','_GET','_POST']:[],
+                ],
+                [
+                    //应用日志，与系统日志分开
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning','info','trace'],
+                    'categories' => [APP_LOG],
+                    'logVars'=> [],
+                    'logFile' => '@app/runtime/logs/'.APP_LOG.'.log',
+                    'maxFileSize' => 1024 * 10,
+                    'maxLogFiles' => 20,
+//                    //对用户的id进行记录,根据这个找到用户
+//                    'prefix' => function ($message) {
+//                        $user = Yii::$app->has('user', true) ? Yii::$app->get('user') : null;
+//                        $userID = $user ? $user->getId(false) : '-';
+//                        return "[$userID]";
+//                    },
                 ],
             ],
         ],
@@ -81,17 +99,12 @@ $config = [
     'params' => $params,
 ];
 
-if (YII_ENV_DEV) {
+if (YII_ENV === 'dev') {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = [
-        'class' => 'yii\debug\Module',
-    ];
-
+    $config['modules']['debug'] = [        'class' => 'yii\debug\Module',    ];
     $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-    ];
+    $config['modules']['gii'] = [        'class' => 'yii\gii\Module',    ];
 }
 
 return $config;

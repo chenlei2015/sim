@@ -12,6 +12,7 @@ use yii\web\Controller;
 use yii\imagine\Image;//图片压缩 剪切 水印 文字水印
 use yii\web\UploadedFile;// 文件上传�?
 use dosamigos\qrcode\QrCode;//引入生成二维码的�?
+use app\models\Member;
 
 class IndexController extends Controller
 {
@@ -74,5 +75,18 @@ class IndexController extends Controller
             }
         }
         return $this->render('index');
+    }
+
+    /**
+     * 忽略验证
+     * save()传入false 忽略model类的rules的验证
+     */
+    public function actionIgnone(){
+        $member=Member::find()->where(['member_id'=>1])->one();
+        $member->member_qq=44;
+        if($member->save(false)){
+            echo 88888888888;die;
+        }
+        print_r($member->getErrors());die;
     }
 }
