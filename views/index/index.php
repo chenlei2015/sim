@@ -14,6 +14,9 @@ use yii\helpers\Url;
     <img src="/uploads/<?=$name?>" alt="">
     <?php }?>
 </div>
+<div><a href="/cvs/Export">导出member表数据</a></div>
+
+
 
 
 
