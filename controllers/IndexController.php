@@ -20,7 +20,6 @@ class IndexController extends Controller
      * 上传图片并压�?
      * @return string
      */
-
      public function actionIndex(){
          if(Yii::$app->request->isPost){
              //获取上传图片对象
