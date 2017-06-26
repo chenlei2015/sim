@@ -10,6 +10,7 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use app\component\CvsComponent;
+use app\models\Member;
 use Yii;
 class CvsController extends Controller
 {
@@ -72,6 +73,31 @@ class CvsController extends Controller
             }
             unset($string);
         }
+    }
+
+
+
+    /**
+     * 导出excel
+     * 采用table2excel.js和table表格结合的方式
+     */
+    public function actionExcelOut()
+    {
+           $this->layout=false;
+           $member=Member::findAll([]);
+           return $this->render('out',[
+               'member'=>$member,
+           ]);
+    }
+
+    /**
+     * 导出excel
+     * 采用纯php
+     */
+
+    public function actionExcelHead(){
+           $this->layout=false;
+           echo $this->render('out',[]);
     }
 
 }

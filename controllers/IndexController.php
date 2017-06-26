@@ -22,6 +22,7 @@ class IndexController extends Controller
      */
 
      public function actionIndex(){
+         //$this->layout="layout_new";
          if(Yii::$app->request->isPost){
              //获取上传图片对象
              $file=UploadedFile::getInstanceByName('pictrue');
@@ -88,5 +89,13 @@ class IndexController extends Controller
             echo 88888888888;die;
         }
         print_r($member->getErrors());die;
+    }
+    /**
+     * 改变布局
+     */
+    public function actionLay(){
+           //echo 77777777;die;
+            $this->layout="layout_new";
+            return $this->render('niu');
     }
 }
