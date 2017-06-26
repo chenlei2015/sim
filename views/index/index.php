@@ -9,6 +9,7 @@ use yii\helpers\Url;
         <input type="submit" value="提交">
     </form>
 </div>
+
 <div>
     <?php if(isset($name) && !empty($name)){?>
     <img src="/uploads/<?=$name?>" alt="">
