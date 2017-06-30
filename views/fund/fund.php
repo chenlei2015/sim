@@ -9,7 +9,7 @@
 
 <h1>六个月以内</h1>
 <ul>
-    <?php foreach (sixMonth_up as $code){?>
+    <?php foreach ($sixMonth_up as $code){?>
         <li><?=$code?></li>
     <?php }?>
 </ul>

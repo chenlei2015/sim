@@ -20,7 +20,6 @@ class IndexController extends Controller
      * 上传图片并压�?
      * @return string
      */
-
      public function actionIndex(){
          //$this->layout="layout_new";
          if(Yii::$app->request->isPost){
