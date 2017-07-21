@@ -7,7 +7,7 @@ use app\models\ticket\Code;
 class TicketController extends Controller
 {
        public  function actionIndex(){
-           $src = 'http://kaijiang.500.com/static/public/ssc/xml/qihaoxml/20170627.xml?_A=ZLYTUPDA'.time().mt_rand(100,999);
+           $src = 'http://kaijiang.500.com/static/public/ssc/xml/qihaoxml/20170710.xml?_A=ZLYTUPDA'.time().mt_rand(100,999);
            $xml=file_get_contents($src);
            $xml = simplexml_load_string($xml);
            $data=[];
@@ -34,78 +34,50 @@ class TicketController extends Controller
            }
        }
 
-
-    /**
-     * 文章编辑功能
-     * @param string $article_id
-     * @return string|\yii\web\Response
-     */
-    public function actionArticleEdit($article_id = '')
-    {
-        $model = $article_id ? PackageArticleForm::findOne($article_id) : new PackageArticleForm();
-        if($model == null){
-            throw new NotFoundHttpException('不存在的记录');
+        public function actionShower(){
+            $subject=[0,2,6,7,9];$field="ge";
+            $codes = Code::find()->select($field)->limit(1000)->orderBy('id desc')->asArray()->all();
+            $count=0;
+            foreach($codes as $key=>$code){
+                if(in_array($code[$field],$subject)){
+                      $count++;
+                }else{
+                    if($count>0){
+                        echo $count."<br>";
+                        $count=0;
+                    }
+    //              $model=new Count();
+    //              $model->wan=$count;
+    //              if($model->save()){
+    //                  unset($model);
+    //              }
+                }
+            }
         }
-        $model->setScenario('edit');
-        if($model->load(\Yii::$app->request->post()) && $model->save()){
-            \Yii::$app->session->setFlash('success','编辑成功');
-            return $this->redirect(\Yii::$app->request->referrer);
-        }
-        return $this->renderAjax('article_edit',[
-            'model' => $model
-        ]);
-    }
 
-    /**
-     * 删除文章
-     * @param $article_id
-     * @return \yii\web\Response
-     */
-    public function actionArticleDelete($article_id)
-    {
-        $model = PackageArticleForm::findOne($article_id);
-        ($model != null && $model->delete())
-            ? \Yii::$app->session->setFlash('success','删除成功')
-            : \Yii::$app->session->setFlash('error','删除失败');
-        return $this->redirect(\Yii::$app->request->referrer);
-    }
 
-    /**
-     * 图册列表
-     * @param $crop_id
-     * @return string
-     */
-    public function actionGallery($crop_id)
-    {
-        $searchModel = new PackageGallerySearch();
-        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams,$crop_id);
-        return $this->render('gallery', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
 
-    /**
-     * 编辑图册
-     * @param string $gallery_id
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException
-     */
-    public function actionGalleryEdit($gallery_id ='')
-    {
-        $model = $gallery_id ? PackageGalleryForm::findOne($gallery_id) : new PackageGalleryForm();
-        if ($model == null) {
-            throw new NotFoundHttpException('不存在的记录');
-        }
-        $model->setScenario('edit');
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            \Yii::$app->session->setFlash('success', '编辑成功');
-            return $this->redirect(\Yii::$app->request->referrer);
-        }
-        return $this->renderAjax('gallery_edit', [
-            'model' => $model
-        ]);
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
        public function actionShow(){
@@ -173,13 +145,13 @@ class TicketController extends Controller
                $wan_value_nei_count=array_count_values ($wan_count_nei_arr);
                $wan_value_wai_count=array_count_values ($wan_count_wai_arr);
                $wan_nei_count=[
-                   $wan_value_nei_count[1]?:0,$wan_value_nei_count[2]?:0,$wan_value_nei_count[2]?:0,$wan_value_nei_count[4]?:0,
+                   $wan_value_nei_count[1]?:0,$wan_value_nei_count[2]?:0,$wan_value_nei_count[3]?:0,$wan_value_nei_count[4]?:0,
                    $wan_value_nei_count[5]?:0,$wan_value_nei_count[6]?:0,$wan_value_nei_count[7]?:0,$wan_value_nei_count[8]?:0,
                    $wan_value_nei_count[9]?:0,$wan_value_nei_count[10]?:0,$wan_value_nei_count[11]?:0,$wan_value_nei_count[12]?:0,
                    $wan_value_nei_count[13]?:0,$wan_value_nei_count[14]?:0,$wan_value_nei_count[15]?:0,$wan_value_nei_count[16]?:0,
                ];
               $wan_wai_count=[
-                   $wan_value_wai_count[1]?:0,$wan_value_wai_count[2]?:0,$wan_value_wai_count[2]?:0,$wan_value_wai_count[4]?:0,
+                   $wan_value_wai_count[1]?:0,$wan_value_wai_count[2]?:0,$wan_value_wai_count[3]?:0,$wan_value_wai_count[4]?:0,
                    $wan_value_wai_count[5]?:0,$wan_value_wai_count[6]?:0,$wan_value_wai_count[7]?:0,$wan_value_wai_count[8]?:0,
                    $wan_value_wai_count[9]?:0,$wan_value_wai_count[10]?:0,$wan_value_wai_count[11]?:0,$wan_value_wai_count[12]?:0,
                    $wan_value_wai_count[13]?:0,$wan_value_wai_count[14]?:0,$wan_value_wai_count[15]?:0,$wan_value_wai_count[16]?:0,
