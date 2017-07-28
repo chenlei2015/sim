@@ -91,13 +91,11 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 
     /**
      * Displays contact page.
-     *
      * @return string
      */
     public function actionContact()
