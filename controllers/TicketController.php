@@ -136,5 +136,60 @@ class TicketController extends Controller
         die;
     }
 
+    public function actionShowery(){
+        // $subjectx=[0,2,6,7,9];  $subjecty=[1,3,4,5,8];$field="wan";
+        $subjectx=[0,2,4,6,8];  $subjecty=[1,3,5,7,9];$field="bai";
+        $codes = Code::find()->select($field)->limit(10500)->asArray()->all();
+        $countx=0;
+        $county=0;
+        $arr_x=[];
+        $arr_y=[];
+        foreach($codes as $key=>$code){
+            if(in_array($code[$field],$subjectx)){
+                $countx++;
+                if($county>0){
+                    array_push($arr_y,$county);
+                    $county=0;
+                }
+            }elseif(in_array($code[$field],$subjecty)){
+                $county++;
+                if($countx>0){
+                    array_push($arr_x,$countx);
+                    $countx=0;
+                }
+            }
+        }
+        $min=min(count($arr_x),count($arr_x));
+        for($i=0;$i<$min;$i++){
+            echo $arr_x[$i].'-'.$arr_y[$i].'<br>';
+        }
+    }
+
+
+    public function actionShowerx(){
+        //$subjectx=[0,2,6,7,9];  $subjecty=[1,3,4,5,8];$field="shi";
+        $subjectx=[0,2,4,6,8];  $subjecty=[1,3,5,7,9];$field="qian";
+        $codes = Code::find()->select($field)->limit(10500)->asArray()->all();
+        $countx=0;
+        $county=0;
+        $arr_x=[];
+        foreach($codes as $key=>$code){
+            if(in_array($code[$field],$subjectx)){
+                $countx++;
+                if($county>0){
+                    array_push($arr_x,$county);
+                    $county=0;
+                }
+            }elseif(in_array($code[$field],$subjecty)){
+                $county++;
+                if($countx>0){
+                    array_push($arr_x,$countx);
+                    $countx=0;
+                }
+            }
+        }
+        echo  implode('',$arr_x);die;
+    }
+
 
 }
