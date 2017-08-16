@@ -56,21 +56,9 @@ class TicketController extends Controller
         }
 
 
-    /**
-     * 单个订单信息的调出
-     */
-    public  function actionOrderRemark(){
-        $params=Yii::$app->request->get();
-        $marks=OrderRemark::find()->where(['order_id'=>$params['order_id']])->orderBy('remark_time desc')->asArray()->all();
-        foreach ($marks as &$mark){
-            $mark['remark_status']=OrderRemark::getRemarkStatus($mark['remark_status']);
-            $mark['remark_time']=date('Y-m-d H:i:s',$mark['remark_time']);
-        }
-        return $this->returnJsonSuccess('success',$marks);
-    }
 
     /**
-     *
+     *上期个十百千万出什么 下棋个位就包这几个号
      */
     public function actionSpace(){
         $field="ge";
@@ -101,6 +89,9 @@ class TicketController extends Controller
         die;
     }
 
+    /**
+     * 上期出什么下期就买什么的
+     */
     public function actionFollow(){
         $field="wan";
         $codes = Code::find()->select(['wan','qian','bai','shi','ge'])->limit(10500)->orderBy('id desc')->asArray()->all();
@@ -117,10 +108,10 @@ class TicketController extends Controller
                 if(!in_array($code[$field],$subject)){
                     $count++;
                 }else{
-                    //if($count>0){
+                    if($count>0){
                         array_push($arr,$count);
                         $count=0;
-                    //}
+                    }
                 }
             }
 
@@ -136,5 +127,93 @@ class TicketController extends Controller
         die;
     }
 
+   /**
+    *[0=>[0,3,6,9],1=>[5,7,9],2=>[1,6,8],3=>[2,7,9],4=>[1,3,8],5=>[2,4,9],6=>[1,3,5],7=>[2,4,6],8=>[3,5,7],9=>[4,6,8]]
+    */
+   
+   public function actionZero(){
+
+        $field="wan";
+        //$codes = Code::find()->select(['no','wan','qian','bai','shi','ge'])->limit(10500)->orderBy('id desc')->asArray()->all();     
+        //$codes=array_reverse($codes);
+        $codes = Code::find()->select(['no','wan','qian','bai','shi','ge'])->limit(10500)->asArray()->all();
+        //print_r($codes);die;
+        $count=0;
+        $arr=[];
+        $subject=[];
+       
+        foreach($codes as $key=>$code){
+            
+          if($code[$field]==9){
+            $subject =[0,1];
+            if(in_array($codes[$key+1][$field],$subject)||in_array($codes[$key+2][$field],$subject)||in_array($codes[$key+3][$field],$subject)){
+                array_push($arr,$count);
+                $count=0;
+            }else{
+                // if($count==3){
+                // echo $code['no'];
+                // }
+                $count++;
+            }
+          }
+      
+        }
+        $statistics=array_count_values ($arr);
+        ksort($statistics);
+        print_r($statistics);
+        die;
+    }
+
+    public function actionShowery(){
+    $subjectx=[0,2,6,7,9];  $subjecty=[1,3,4,5,8];$field="ge";
+    $codes = Code::find()->select($field)->limit(10500)->asArray()->all();
+    $countx=0;
+    $county=0;
+    $arr_x=[];
+    $arr_y=[];
+    foreach($codes as $key=>$code){
+        if(in_array($code[$field],$subjectx)){
+                $countx++;
+                if($county>0){
+                    array_push($arr_y,$county);
+                    $county=0;
+                }
+        }elseif(in_array($code[$field],$subjecty)){
+                $county++;
+                if($countx>0){
+                    array_push($arr_x,$countx);
+                    $countx=0;
+                }
+        }
+    }
+    $min=min(count($arr_x),count($arr_x));
+    for($i=0;$i<$min;$i++){
+         echo $arr_x[$i].'-'.$arr_y[$i].'<br>';
+    }
+  }
+
+  public function actionShowerx(){
+    $subjectx=[0,2,6,7,9];  $subjecty=[1,3,4,5,8];$field="shi";
+    $codes = Code::find()->select($field)->limit(10500)->asArray()->all();
+    $countx=0;
+    $county=0;
+    $arr_x=[];
+    foreach($codes as $key=>$code){
+        if(in_array($code[$field],$subjectx)){
+            $countx++;
+            if($county>0){
+                array_push($arr_x,$county);
+                $county=0;
+            }
+        }elseif(in_array($code[$field],$subjecty)){
+            $county++;
+            if($countx>0){
+                array_push($arr_x,$countx);
+                $countx=0;
+            }
+        }
+    }
+    echo  implode('',$arr_x);die;
+}
 
 }
